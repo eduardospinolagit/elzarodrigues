@@ -982,7 +982,7 @@
     <li><a href="#processo">Como Funciona</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
-  <a href="https://wa.me/5569993049327?text=Ol%C3%A1%2C%20vim%20pelo%20site" class="nav-cta" target="_blank">Fale Conosco</a>
+  <button class="nav-cta" onclick="abrirConsulta()">Fale Conosco</button>
   <div class="nav-hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
@@ -1196,35 +1196,68 @@
 </div>
 
 <!-- CONTATO -->
-<section class="contact" id="contato">
-  <div class="contact-info">
-    <div class="section-label">Contato</div>
-    <h2 class="section-title">Fale <em>comigo</em></h2>
-    <p class="contact-text">Atendo online para todo o Brasil. Entre em contato pelo WhatsApp, pelas redes sociais ou preencha o formulário ao lado.</p>
+<section id="contato" style="padding:6rem 8vw;background:var(--white)">
 
-    <div class="contact-detail">
-      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
-      <div>
-        <span class="contact-detail-label">WhatsApp</span>
-        <span class="contact-detail-value">(69) 99304-9327</span>
-      </div>
-    </div>
-    <div class="contact-detail">
-      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-      <div>
-        <span class="contact-detail-label">Endereço</span>
-        <span class="contact-detail-value">Rua Vanor Prudente Vieira, 229 — Barra Velha/SC</span>
-      </div>
-    </div>
-    <div class="contact-detail">
-      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <div>
-        <span class="contact-detail-label">Registro</span>
-        <span class="contact-detail-value">OAB/PR 128211 &nbsp;|&nbsp; OAB/RO 7377 S</span>
-      </div>
-    </div>
+  <!-- Copy de valor -->
+  <div style="max-width:720px;margin:0 auto 4rem;text-align:center">
+    <div class="section-label" style="justify-content:center">Consulta Online</div>
+    <h2 class="section-title" style="margin-bottom:1.2rem">
+      Uma hora que pode mudar<br/><em>anos de luta</em>
+    </h2>
+    <p style="font-size:1rem;font-weight:300;color:var(--ink2);line-height:1.85;max-width:580px;margin:0 auto">
+      Você já tentou entender seus direitos sozinho — e ficou com mais dúvidas do que respostas. Passou por negativas do INSS, não sabe se tem direito à pensão, ao inventário, à revisão do benefício. E cada dia sem agir é um dia a menos de direito.
+    </p>
+  </div>
 
-    <div class="social-links">
+  <!-- Benefícios da consulta -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;max-width:860px;margin:0 auto 3.5rem">
+    <div style="padding:1.5rem;border:1px solid var(--border);border-radius:4px;background:var(--bg)">
+      <div style="color:var(--gold);font-size:1.4rem;margin-bottom:.6rem">⚖️</div>
+      <div style="font-size:.82rem;font-weight:500;color:var(--ink);margin-bottom:.4rem">Análise do seu caso</div>
+      <div style="font-size:.78rem;font-weight:300;color:var(--ink2);line-height:1.6">Avalio toda a sua situação jurídica e identifico exatamente quais são seus direitos.</div>
+    </div>
+    <div style="padding:1.5rem;border:1px solid var(--border);border-radius:4px;background:var(--bg)">
+      <div style="color:var(--gold);font-size:1.4rem;margin-bottom:.6rem">🗺️</div>
+      <div style="font-size:.82rem;font-weight:500;color:var(--ink);margin-bottom:.4rem">Caminho mais rápido</div>
+      <div style="font-size:.78rem;font-weight:300;color:var(--ink2);line-height:1.6">Você sai da consulta sabendo exatamente o que fazer — sem perder tempo com tentativas.</div>
+    </div>
+    <div style="padding:1.5rem;border:1px solid var(--border);border-radius:4px;background:var(--bg)">
+      <div style="color:var(--gold);font-size:1.4rem;margin-bottom:.6rem">🔒</div>
+      <div style="font-size:.82rem;font-weight:500;color:var(--ink);margin-bottom:.4rem">Sigilo total e online</div>
+      <div style="font-size:.78rem;font-weight:300;color:var(--ink2);line-height:1.6">Atendimento 100% seguro, sem sair de casa, em qualquer estado do Brasil.</div>
+    </div>
+    <div style="padding:1.5rem;border:1px solid var(--border);border-radius:4px;background:var(--bg)">
+      <div style="color:var(--gold);font-size:1.4rem;margin-bottom:.6rem">📋</div>
+      <div style="font-size:.82rem;font-weight:500;color:var(--ink);margin-bottom:.4rem">Orientação especializada</div>
+      <div style="font-size:.78rem;font-weight:300;color:var(--ink2);line-height:1.6">Mais de 10 anos atuando em Previdenciário, Família e Sucessões — falo a sua língua.</div>
+    </div>
+  </div>
+
+  <!-- Preço + CTA central -->
+  <div style="max-width:460px;margin:0 auto;text-align:center;padding:2.5rem;border:1px solid var(--border);border-radius:8px;background:var(--bg)">
+    <p style="font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:.5rem">Investimento único</p>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:500;color:var(--gold);line-height:1">R$ 247</div>
+    <p style="font-size:.8rem;color:var(--ink3);margin:.4rem 0 1.8rem;font-weight:300">consulta jurídica online • duração até 1h</p>
+    <button class="btn-primary" onclick="abrirConsulta()" style="width:100%;justify-content:center;font-size:.9rem;padding:1rem">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      Agendar minha consulta
+    </button>
+    <p style="font-size:.72rem;color:var(--ink3);margin-top:1rem;font-weight:300">
+      Pagamento via PIX • Agendamento pelo WhatsApp após confirmação
+    </p>
+  </div>
+
+  <!-- Info + Redes -->
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:3rem;padding-top:2.5rem;border-top:1px solid var(--border)">
+    <div style="display:flex;align-items:center;gap:.6rem">
+      <svg width="16" height="16" fill="none" stroke="var(--gold)" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+      <span style="font-size:.82rem;color:var(--ink2);font-weight:300">(69) 99304-9327</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:.6rem">
+      <svg width="16" height="16" fill="none" stroke="var(--gold)" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span style="font-size:.82rem;color:var(--ink2);font-weight:300">OAB/PR 128211 &nbsp;|&nbsp; OAB/RO 7377 S</span>
+    </div>
+    <div class="social-links" style="margin:0">
       <a href="https://www.instagram.com/elzarodriguesadv" class="social-link" target="_blank" title="Instagram">
         <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
       </a>
@@ -1237,33 +1270,6 @@
     </div>
   </div>
 
-  <div class="contact-form">
-    <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;margin-bottom:1.5rem;color:var(--ink)">Envie uma mensagem</h3>
-    <div class="form-group">
-      <label>Nome Completo</label>
-      <input type="text" placeholder="Seu nome"/>
-    </div>
-    <div class="form-group">
-      <label>WhatsApp</label>
-      <input type="tel" placeholder="(00) 00000-0000"/>
-    </div>
-    <div class="form-group">
-      <label>Área de Interesse</label>
-      <select>
-        <option value="">Selecione uma área</option>
-        <option>Aposentadoria</option>
-        <option>Benefícios Previdenciários</option>
-        <option>Família e Sucessões</option>
-        <option>Pensão Alimentícia</option>
-        <option>Outros</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Mensagem</label>
-      <textarea placeholder="Descreva brevemente sua situação..."></textarea>
-    </div>
-    <button class="form-submit" onclick="sendWhatsApp()">Enviar pelo WhatsApp</button>
-  </div>
 </section>
 
 <!-- FOOTER -->
@@ -1274,7 +1280,7 @@
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/5569993049327?text=Ol%C3%A1%2C%20vim%20pelo%20site" class="whatsapp-float" target="_blank">
+<button class="whatsapp-float" onclick="abrirConsulta()">
   <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   Falar no WhatsApp
 </a>
@@ -1292,18 +1298,6 @@
         if (cta) cta.style.cssText = 'display:block;margin:0 2rem 2rem;text-align:center;';
       }
     }
-  }
-
-  function sendWhatsApp() {
-    const name = document.querySelector('input[type="text"]').value;
-    const phone = document.querySelector('input[type="tel"]').value;
-    const area = document.querySelector('select').value;
-    const msg = document.querySelector('textarea').value;
-    let text = 'Olá, vim pelo site';
-    if (name) text += ` — sou ${name}`;
-    if (area) text += `. Tenho interesse em: ${area}`;
-    if (msg) text += `. ${msg}`;
-    window.open(`https://wa.me/5569993049327?text=${encodeURIComponent(text)}`, '_blank');
   }
 
   // Smooth reveal on scroll
@@ -1330,7 +1324,7 @@
 //  CONFIGURAÇÕES — edite apenas aqui
 // ═══════════════════════════════════════════════════════
 const PIX_CONFIG = {
-  chave:      'CHAVE_PIX_AQUI',          // ← trocar pela chave PIX da Elza
+  chave:      '32961162220',          // ← trocar pela chave PIX da Elza
   nome:       'ELZA RODRIGUES',          // nome como aparece no banco (máx 25 chars, sem acento)
   cidade:     'BARRA VELHA',             // cidade (máx 15 chars, sem acento)
   valor:      '247.00',
