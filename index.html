@@ -864,8 +864,8 @@
 
     <div class="modal-header">
       <div>
-        <h3>Agendar Consulta</h3>
-        <p>Preencha seus dados e realize o pagamento via PIX</p>
+        <h3 id="modal-titulo">Consulta Juridica Online</h3>
+        <p id="modal-subtitulo">Dra. Elza Rodrigues</p>
       </div>
       <button class="modal-close" onclick="fecharModal()">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -876,8 +876,8 @@
 
     <div class="modal-body">
 
-      <!-- Steps indicator -->
-      <div class="modal-steps">
+      <!-- Steps indicator oculto na copy -->
+      <div class="modal-steps" id="modal-steps-bar" style="display:none">
         <div class="mstep active" id="step-ind-1">
           <div class="mstep-num">1</div>Seus Dados
         </div>
@@ -885,14 +885,64 @@
           <div class="mstep-num">2</div>Pagamento
         </div>
         <div class="mstep" id="step-ind-3">
-          <div class="mstep-num">3</div>Confirmação
+          <div class="mstep-num">3</div>Confirmacao
         </div>
       </div>
 
-      <!-- PASSO 1 — Formulário -->
-      <div class="step-panel active" id="step1">
+      <!-- PASSO 0 Copy de entrada -->
+      <div class="step-panel active" id="step0">
+        <div style="text-align:center;padding:.5rem 0 .5rem">
+          <div style="width:52px;height:52px;border-radius:50%;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem">
+            <svg width="22" height="22" fill="none" stroke="var(--gold)" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971z"/>
+            </svg>
+          </div>
+          <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;color:var(--ink);line-height:1.3;margin-bottom:.85rem">
+            Voce tem direitos que talvez<br/>ainda nao conhece
+          </h4>
+          <p style="font-size:.84rem;font-weight:300;color:var(--ink2);line-height:1.75;margin-bottom:1.3rem;text-align:left">
+            Em uma consulta de ate 1 hora, analiso o seu caso com atencao, identifico seus direitos e tracamos juntos o caminho mais rapido para resolve-lo. Sem enrolacao, sem juridiques.
+          </p>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1rem 1.2rem;margin-bottom:1.3rem;text-align:left">
+            <p style="font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:.7rem">O que voce recebe</p>
+            <div style="display:flex;flex-direction:column;gap:.45rem">
+              <div style="display:flex;align-items:flex-start;gap:.6rem;font-size:.81rem;font-weight:300;color:var(--ink2);line-height:1.5">
+                <span style="color:var(--gold);flex-shrink:0;margin-top:.1rem">✦</span>
+                Analise completa da sua situacao juridica
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:.6rem;font-size:.81rem;font-weight:300;color:var(--ink2);line-height:1.5">
+                <span style="color:var(--gold);flex-shrink:0;margin-top:.1rem">✦</span>
+                Orientacao clara sobre seus direitos e proximos passos
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:.6rem;font-size:.81rem;font-weight:300;color:var(--ink2);line-height:1.5">
+                <span style="color:var(--gold);flex-shrink:0;margin-top:.1rem">✦</span>
+                Atendimento sigiloso e 100% online, em qualquer estado
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:.6rem;font-size:.81rem;font-weight:300;color:var(--ink2);line-height:1.5">
+                <span style="color:var(--gold);flex-shrink:0;margin-top:.1rem">✦</span>
+                Mais de 10 anos de experiencia em Previdenciario e Familia
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:.8rem;margin-bottom:1.3rem">
+            <div style="height:1px;flex:1;background:var(--border)"></div>
+            <div>
+              <span style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:500;color:var(--gold)">R$ 247</span>
+              <span style="font-size:.74rem;color:var(--ink3);font-weight:300;margin-left:.3rem">por consulta</span>
+            </div>
+            <div style="height:1px;flex:1;background:var(--border)"></div>
+          </div>
+          <button class="btn-modal-primary" onclick="irFormulario()" style="font-size:.88rem;padding:.9rem;width:100%">
+            Quero agendar minha consulta
+          </button>
+          <p style="font-size:.7rem;color:var(--ink3);margin-top:.7rem;font-weight:300">Pagamento seguro via PIX apos preenchimento</p>
+        </div>
+      </div>
+
+      <!-- PASSO 1 Formulario -->
+      <div class="step-panel" id="step1">
         <div class="modal-price-tag">
-          <span class="modal-price-label">Consulta Jurídica Online</span>
+          <span class="modal-price-label">Consulta Juridica Online</span>
           <span class="modal-price-value">R$ 247,00</span>
         </div>
         <div class="mform-group">
@@ -900,73 +950,74 @@
           <input type="text" id="lead-nome" placeholder="Seu nome completo"/>
         </div>
         <div class="mform-group">
-          <label>WhatsApp *</label>
+          <label>Telefone *</label>
           <input type="tel" id="lead-tel" placeholder="(00) 00000-0000"/>
         </div>
         <div class="mform-group">
-          <label>Área de Interesse *</label>
+          <label>Area de Interesse *</label>
           <select id="lead-area">
-            <option value="">Selecione uma área</option>
+            <option value="">Selecione uma area</option>
             <option>Aposentadoria</option>
-            <option>Benefícios Previdenciários (BPC, Auxílio Doença...)</option>
-            <option>Família e Sucessões (Divórcio, Inventário...)</option>
-            <option>Pensão Alimentícia</option>
-            <option>Revisão de Benefício INSS</option>
+            <option>Beneficios Previdenciarios (BPC, Auxilio Doenca...)</option>
+            <option>Familia e Sucessoes (Divorcio, Inventario...)</option>
+            <option>Pensao Alimenticia</option>
+            <option>Revisao de Beneficio INSS</option>
             <option>Outro assunto</option>
           </select>
         </div>
         <div class="mform-group">
-          <label>Descreva brevemente sua situação *</label>
+          <label>Descreva brevemente sua situacao *</label>
           <input type="text" id="lead-msg" placeholder="Ex: Fui negada pelo INSS e quero recorrer"/>
         </div>
         <p class="modal-error" id="erro-step1">Por favor, preencha todos os campos.</p>
-        <button class="btn-modal-primary" onclick="irStep2()">Continuar para Pagamento →</button>
+        <button class="btn-modal-primary" onclick="irStep2()">Continuar para Pagamento</button>
+        <button class="btn-modal-secondary" onclick="irStep0()" style="margin-top:.5rem">Voltar</button>
       </div>
 
-      <!-- PASSO 2 — PIX -->
+      <!-- PASSO 2 PIX -->
       <div class="step-panel" id="step2">
         <p class="pix-instructions">
           <strong style="color:var(--ink);font-weight:500">Como pagar:</strong>
           <ol>
             <li>Abra o app do seu banco</li>
-            <li>Escolha <strong>PIX → Pagar com QR Code</strong> ou <strong>Copia e Cola</strong></li>
+            <li>Escolha PIX com QR Code ou Copia e Cola</li>
             <li>Confirme o valor de <strong>R$ 247,00</strong> para <strong>Elza Rodrigues</strong></li>
-            <li>Após pagar, clique em <strong>"Já realizei o pagamento"</strong></li>
+            <li>Apos pagar, clique em <strong>"Ja realizei o pagamento"</strong></li>
           </ol>
         </p>
         <div class="pix-box">
           <canvas id="pix-qr"></canvas>
-          <p class="pix-copy-label">Ou copie o código Pix Copia e Cola</p>
+          <p class="pix-copy-label">Ou copie o codigo Pix Copia e Cola</p>
           <div class="pix-code-wrap">
             <div class="pix-code" id="pix-code-text">Carregando...</div>
             <button class="pix-copy-btn" id="btn-copy" onclick="copiarPix()">Copiar</button>
           </div>
-          <p class="pix-timer">Código válido por <span id="timer-val">10:00</span></p>
+          <p class="pix-timer">Codigo valido por <span id="timer-val">10:00</span></p>
         </div>
-        <button class="btn-modal-primary" onclick="irStep3()">✓ Já realizei o pagamento</button>
-        <button class="btn-modal-secondary" onclick="irStep1()">← Voltar</button>
+        <button class="btn-modal-primary" onclick="irStep3()">Ja realizei o pagamento</button>
+        <button class="btn-modal-secondary" onclick="irStep1()" style="margin-top:.5rem">Voltar</button>
       </div>
 
-      <!-- PASSO 3 — Token + WhatsApp -->
+      <!-- PASSO 3 Token -->
       <div class="step-panel" id="step3">
         <div style="text-align:center;margin-bottom:1.5rem">
           <svg width="48" height="48" fill="none" stroke="#22c55e" stroke-width="1.5" viewBox="0 0 24 24" style="margin:0 auto">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
           <p style="font-size:.9rem;color:var(--ink2);margin-top:.8rem;font-weight:300">
-            Pagamento registrado! Guarde seu código de acesso abaixo.
+            Pagamento registrado! Guarde seu codigo de acesso abaixo.
           </p>
         </div>
         <div class="token-box">
           <p class="token-label">Seu Token de Acesso</p>
-          <p class="token-value" id="token-display">—</p>
-          <p class="token-note">Envie esse código para a Drª Elza via WhatsApp</p>
+          <p class="token-value" id="token-display"></p>
+          <p class="token-note">Envie esse codigo para a Dra. Elza via contato</p>
         </div>
         <button class="btn-wpp-token" onclick="enviarWppToken()">
           <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Enviar Token pelo WhatsApp
         </button>
-        <button class="btn-modal-secondary" onclick="fecharModal()" style="margin-top:.8rem">Fechar</button>
+        <button class="btn-modal-secondary" onclick="fecharModal()" style="margin-top:.6rem">Fechar</button>
       </div>
 
     </div>
@@ -1046,7 +1097,7 @@
       <div class="area-title">Família &amp; Sucessões</div>
       <ul class="area-list">
         <li>Divórcio Litigioso e Consensual</li>
-        <li>União Estável — Reconhecimento e Dissolução</li>
+        <li>União Estável Reconhecimento e Dissolução</li>
         <li>Guarda Unilateral e Compartilhada</li>
         <li>Inventário e Arrolamento</li>
         <li>Sobrepartilha</li>
@@ -1088,7 +1139,7 @@
         <li>Pensão por Morte</li>
         <li>Auxílio Doença e Acidente</li>
         <li>Salário Maternidade</li>
-        <li>BPC/LOAS — Idoso e PcD</li>
+        <li>BPC/LOAS Idoso e PcD</li>
         <li>Revisão e Planejamento Previdenciário</li>
       </ul>
     </div>
@@ -1108,7 +1159,7 @@
       Há mais de 10 anos luto pelos direitos dos aposentados, famílias e pessoas que precisam de orientação jurídica clara e eficiente. Sou especializada em Direito de Família, Sucessões e Previdenciário, com foco em consultoria preventiva, contencioso estratégico e planejamento jurídico.
     </p>
     <p class="about-text" style="margin-top: -1rem;">
-      Ofereço atendimento técnico, acolhedor e altamente profissional — com soluções jurídicas claras, seguras e alinhadas às necessidades reais de cada cliente. Cuido de toda a trajetória processual, do primeiro contato ao resultado final.
+      Ofereço atendimento técnico, acolhedor e altamente profissional com soluções jurídicas claras, seguras e alinhadas às necessidades reais de cada cliente. Cuido de toda a trajetória processual, do primeiro contato ao resultado final.
     </p>
     <div class="about-pillars">
       <div class="pillar">
@@ -1149,7 +1200,7 @@
     <div class="process-step">
       <span class="step-num">03</span>
       <div class="step-title">Estratégia Jurídica</div>
-      <p class="step-desc">Construo uma estratégia sob medida — extrajudicial ou judicial, sempre buscando a melhor solução para você.</p>
+      <p class="step-desc">Construo uma estratégia sob medida extrajudicial ou judicial, sempre buscando a melhor solução para você.</p>
     </div>
     <div class="process-step">
       <span class="step-num">04</span>
@@ -1168,19 +1219,19 @@
       <div class="t-stars">★★★★★</div>
       <div class="t-quote">"</div>
       <p class="t-text">A Dra. Elza foi fundamental para conquistar minha aposentadoria especial. Processo todo online, muito organizado e ela sempre me explicou tudo com clareza. Recomendo demais!</p>
-      <span class="t-author">Maria S. — Cliente Previdenciário</span>
+      <span class="t-author">Maria S. Cliente Previdenciário</span>
     </div>
     <div class="testimonial-card">
       <div class="t-stars">★★★★★</div>
       <div class="t-quote">"</div>
       <p class="t-text">Passei anos sem saber que tinha direito ao BPC. A Dra. Elza resolveu tudo de forma rápida e sem precisar sair de casa. Profissional extremamente dedicada e humana.</p>
-      <span class="t-author">João P. — Cliente BPC/LOAS</span>
+      <span class="t-author">João P. Cliente BPC/LOAS</span>
     </div>
     <div class="testimonial-card">
       <div class="t-stars">★★★★★</div>
       <div class="t-quote">"</div>
       <p class="t-text">Fui muito bem atendida no processo de divórcio. A Dra. Elza demonstrou muito conhecimento e cuidado. Me senti segura em cada etapa do processo.</p>
-      <span class="t-author">Ana L. — Cliente Família</span>
+      <span class="t-author">Ana L. Cliente Família</span>
     </div>
   </div>
 </section>
@@ -1205,7 +1256,7 @@
       Uma hora que pode mudar<br/><em>anos de luta</em>
     </h2>
     <p style="font-size:1rem;font-weight:300;color:var(--ink2);line-height:1.85;max-width:580px;margin:0 auto">
-      Você já tentou entender seus direitos sozinho — e ficou com mais dúvidas do que respostas. Passou por negativas do INSS, não sabe se tem direito à pensão, ao inventário, à revisão do benefício. E cada dia sem agir é um dia a menos de direito.
+      Você já tentou entender seus direitos sozinho e ficou com mais dúvidas do que respostas. Passou por negativas do INSS, não sabe se tem direito à pensão, ao inventário, à revisão do benefício. E cada dia sem agir é um dia a menos de direito.
     </p>
   </div>
 
@@ -1219,7 +1270,7 @@
     <div style="padding:1.5rem;border:1px solid var(--border);border-radius:4px;background:var(--bg)">
       <div style="color:var(--gold);font-size:1.4rem;margin-bottom:.6rem">🗺️</div>
       <div style="font-size:.82rem;font-weight:500;color:var(--ink);margin-bottom:.4rem">Caminho mais rápido</div>
-      <div style="font-size:.78rem;font-weight:300;color:var(--ink2);line-height:1.6">Você sai da consulta sabendo exatamente o que fazer — sem perder tempo com tentativas.</div>
+      <div style="font-size:.78rem;font-weight:300;color:var(--ink2);line-height:1.6">Você sai da consulta sabendo exatamente o que fazer sem perder tempo com tentativas.</div>
     </div>
     <div style="padding:1.5rem;border:1px solid var(--border);border-radius:4px;background:var(--bg)">
       <div style="color:var(--gold);font-size:1.4rem;margin-bottom:.6rem">🔒</div>
@@ -1229,7 +1280,7 @@
     <div style="padding:1.5rem;border:1px solid var(--border);border-radius:4px;background:var(--bg)">
       <div style="color:var(--gold);font-size:1.4rem;margin-bottom:.6rem">📋</div>
       <div style="font-size:.82rem;font-weight:500;color:var(--ink);margin-bottom:.4rem">Orientação especializada</div>
-      <div style="font-size:.78rem;font-weight:300;color:var(--ink2);line-height:1.6">Mais de 10 anos atuando em Previdenciário, Família e Sucessões — falo a sua língua.</div>
+      <div style="font-size:.78rem;font-weight:300;color:var(--ink2);line-height:1.6">Mais de 10 anos atuando em Previdenciário, Família e Sucessões falo a sua língua.</div>
     </div>
   </div>
 
@@ -1243,7 +1294,7 @@
       Agendar minha consulta
     </button>
     <p style="font-size:.72rem;color:var(--ink3);margin-top:1rem;font-weight:300">
-      Pagamento via PIX • Agendamento pelo WhatsApp após confirmação
+      Pagamento seguro via PIX • Confirmação imediata
     </p>
   </div>
 
@@ -1275,8 +1326,8 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Elza Rodrigues <span>|</span> Advocacia</div>
-  <div class="footer-copy">© 2025 ER Advocacia e Consultoria Jurídica. Todos os direitos reservados.</div>
-  <div class="footer-sano">Site criado por <a href="https://sanolab.vercel.app" target="_blank">Sano Lab</a></div>
+  <div class="footer-copy">© 2026 Elza Rodrigues Advocacia e Consultoria Jurídica. Todos os direitos reservados.</div>
+  <div class="footer-sano">Desenvolvido por <a href="https://sanolab.com.br" target="_blank">Sano Lab</a></div>
 </footer>
 
 <!-- WHATSAPP FLOAT -->
@@ -1321,7 +1372,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 // ═══════════════════════════════════════════════════════
-//  CONFIGURAÇÕES — edite apenas aqui
+//  CONFIGURAÇÕES edite apenas aqui
 // ═══════════════════════════════════════════════════════
 const PIX_CONFIG = {
   chave:      '32961162220',          // ← trocar pela chave PIX da Elza
@@ -1396,7 +1447,7 @@ function gerarPixPayload(chave, nome, cidade, valor, descricao, txid) {
 function abrirConsulta() {
   document.getElementById('modalConsulta').classList.add('active');
   document.body.style.overflow = 'hidden';
-  irStep1();
+  irStep0();
 }
 function fecharModal() {
   document.getElementById('modalConsulta').classList.remove('active');
@@ -1410,15 +1461,48 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(
 
 /* ── Steps ── */
 function setStep(n) {
+  document.getElementById('step0').classList.remove('active');
   [1,2,3].forEach(i => {
     document.getElementById('step' + i).classList.toggle('active', i === n);
     const ind = document.getElementById('step-ind-' + i);
     ind.className = 'mstep' + (i === n ? ' active' : i < n ? ' done' : '');
   });
+  // atualizar header conforme step
+  const titulos = {1:'Seus dados', 2:'Pagamento PIX', 3:'Confirmacao'};
+  const subs = {1:'Preencha para prosseguir', 2:'Escaneie o QR Code ou copie o codigo', 3:'Pagamento realizado'};
+  if (titulos[n]) {
+    document.getElementById('modal-titulo').textContent = titulos[n];
+    document.getElementById('modal-subtitulo').textContent = subs[n];
+  }
+}
+
+function irStep0() {
+  clearInterval(timerInterval);
+  // volta pra copy, esconde steps bar
+  document.getElementById('modal-steps-bar').style.display = 'none';
+  document.getElementById('modal-titulo').textContent = 'Consulta Juridica Online';
+  document.getElementById('modal-subtitulo').textContent = 'Dra. Elza Rodrigues';
+  [1,2,3].forEach(i => {
+    document.getElementById('step' + i).classList.remove('active');
+    document.getElementById('step-ind-' + i).className = 'mstep';
+  });
+  document.getElementById('step0').classList.add('active');
+}
+
+function irFormulario() {
+  // vai do copy para o formulario, mostra steps bar
+  document.getElementById('modal-steps-bar').style.display = 'flex';
+  document.getElementById('modal-titulo').textContent = 'Seus dados';
+  document.getElementById('modal-subtitulo').textContent = 'Preencha para prosseguir';
+  document.getElementById('step0').classList.remove('active');
+  setStep(1);
 }
 
 function irStep1() {
   clearInterval(timerInterval);
+  document.getElementById('modal-steps-bar').style.display = 'flex';
+  document.getElementById('modal-titulo').textContent = 'Seus dados';
+  document.getElementById('modal-subtitulo').textContent = 'Preencha para prosseguir';
   setStep(1);
 }
 
@@ -1474,7 +1558,7 @@ function renderizarPix() {
       correctLevel: QRCode.CorrectLevel.M
     });
   } catch(e) {
-    canvas.textContent = 'QR Code indisponível — use o código abaixo.';
+    canvas.textContent = 'QR Code indisponível use o código abaixo.';
   }
 }
 
@@ -1512,7 +1596,7 @@ function iniciarTimer(segundos) {
 function enviarWppToken() {
   const { nome, tel, area, msg } = leadDados;
   const texto =
-    `Olá, vim pelo site — realizei o pagamento da consulta!%0A%0A` +
+    `Olá, vim pelo site realizei o pagamento da consulta!%0A%0A` +
     `*Token:* ${tokenGerado}%0A` +
     `*Nome:* ${nome}%0A` +
     `*WhatsApp:* ${tel}%0A` +
