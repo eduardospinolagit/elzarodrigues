@@ -1135,18 +1135,18 @@
   <div class="process-grid">
     <div class="process-step">
       <span class="step-num">01</span>
-      <div class="step-title">Primeiro Contato</div>
-      <p class="step-desc">Entre em contato pelo WhatsApp. Atendimento rápido, sem burocracia e sem custo inicial.</p>
+      <div class="step-title">Agendamento</div>
+      <p class="step-desc">Preencha o formulário, realize o pagamento via PIX e envie seu token de confirmação. Tudo online, em minutos.</p>
     </div>
     <div class="process-step">
       <span class="step-num">02</span>
       <div class="step-title">Análise do Caso</div>
-      <p class="step-desc">Avalio cuidadosamente os documentos e o cenário jurídico para identificar seus direitos.</p>
+      <p class="step-desc">Avalio cuidadosamente os documentos e o cenário jurídico para identificar com precisão seus direitos.</p>
     </div>
     <div class="process-step">
       <span class="step-num">03</span>
       <div class="step-title">Estratégia Jurídica</div>
-      <p class="step-desc">Construo uma estratégia sob medida extrajudicial ou judicial, sempre buscando a melhor solução para você.</p>
+      <p class="step-desc">Construo uma estratégia sob medida, extrajudicial ou judicial, sempre buscando a melhor solução para o seu caso.</p>
     </div>
     <div class="process-step">
       <span class="step-num">04</span>
@@ -1542,14 +1542,16 @@ function iniciarTimer(segundos) {
 /* ── WhatsApp com Token ── */
 function enviarWppToken() {
   const { nome, tel, area, msg } = leadDados;
-  const texto =
-    `Olá, vim pelo site realizei o pagamento da consulta!%0A%0A` +
-    `*Token:* ${tokenGerado}%0A` +
-    `*Nome:* ${nome}%0A` +
-    `*WhatsApp:* ${tel}%0A` +
-    `*Área:* ${area}%0A` +
-    `*Situação:* ${msg}`;
-  window.open(`https://wa.me/${PIX_CONFIG.whatsapp}?text=${texto}`, '_blank');
+  const linhas = [
+    'Olá, vim pelo site. Esse é o token da minha consulta.',
+    '',
+    `Token: ${tokenGerado}`,
+    `Nome: ${nome}`,
+    `WhatsApp: ${tel}`,
+    `Área: ${area}`,
+    `Situação: ${msg}`
+  ].join('\n');
+  window.open(`https://wa.me/${PIX_CONFIG.whatsapp}?text=${encodeURIComponent(linhas)}`, '_blank');
 }
 </script>
 
