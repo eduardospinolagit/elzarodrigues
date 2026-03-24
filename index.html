@@ -656,9 +656,322 @@
     .process-grid { grid-template-columns: 1fr; }
     .about-pillars { grid-template-columns: 1fr; }
   }
+
+  /* ── MODAL CONSULTA ── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(26,23,20,.7);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .modal-overlay.active { display: flex; }
+
+  .modal-box {
+    background: var(--white);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalIn .3s ease;
+  }
+  @keyframes modalIn {
+    from { opacity:0; transform: translateY(20px) scale(.97); }
+    to   { opacity:1; transform: translateY(0) scale(1); }
+  }
+
+  .modal-header {
+    padding: 2rem 2rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; justify-content: space-between;
+  }
+  .modal-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 400;
+    color: var(--ink); line-height: 1.2;
+  }
+  .modal-header p {
+    font-size: .78rem; color: var(--ink3); margin-top: .3rem; font-weight: 300;
+  }
+  .modal-close {
+    background: none; border: none; cursor: pointer;
+    color: var(--ink3); padding: .2rem; flex-shrink: 0;
+    transition: color .2s;
+  }
+  .modal-close:hover { color: var(--ink); }
+
+  .modal-body { padding: 1.8rem 2rem; }
+
+  /* Steps */
+  .modal-steps {
+    display: flex; gap: 0; margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border); padding-bottom: 1.2rem;
+  }
+  .mstep {
+    flex: 1; text-align: center; position: relative;
+    font-size: .68rem; font-weight: 500; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink3);
+  }
+  .mstep.active { color: var(--gold); }
+  .mstep.done   { color: var(--gold); opacity: .5; }
+  .mstep-num {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 1.5px solid currentColor;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .7rem; font-weight: 600;
+    margin: 0 auto .4rem;
+    background: transparent;
+  }
+  .mstep.active .mstep-num { background: var(--gold); color: #fff; border-color: var(--gold); }
+  .mstep.done   .mstep-num { background: transparent; }
+
+  /* Form step */
+  .step-panel { display: none; }
+  .step-panel.active { display: block; }
+
+  .mform-group { margin-bottom: 1.1rem; }
+  .mform-group label {
+    display: block; font-size: .7rem; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink3); margin-bottom: .4rem;
+  }
+  .mform-group input,
+  .mform-group select {
+    width: 100%; padding: .7rem .9rem;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--bg); color: var(--ink);
+    font-family: 'DM Sans', sans-serif; font-size: .88rem; font-weight: 300;
+    outline: none; transition: border-color .2s; appearance: none;
+  }
+  .mform-group input:focus,
+  .mform-group select:focus { border-color: var(--gold); }
+
+  .modal-price-tag {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1rem 1.2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.4rem;
+  }
+  .modal-price-label { font-size: .75rem; color: var(--ink3); font-weight: 400; }
+  .modal-price-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 500; color: var(--gold);
+  }
+
+  /* PIX step */
+  .pix-box {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem;
+    text-align: center; margin-bottom: 1.2rem;
+  }
+  .pix-box canvas { display: block; margin: 0 auto 1rem; max-width: 180px; }
+  .pix-copy-label {
+    font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink3); margin-bottom: .5rem;
+  }
+  .pix-code-wrap {
+    display: flex; gap: .5rem; align-items: center;
+  }
+  .pix-code {
+    flex: 1; padding: .6rem .8rem;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--white); font-size: .72rem; color: var(--ink2);
+    font-family: monospace; overflow: hidden; text-overflow: ellipsis;
+    white-space: nowrap; cursor: text;
+  }
+  .pix-copy-btn {
+    padding: .6rem .9rem; background: var(--gold); color: #fff;
+    border: none; border-radius: var(--radius); cursor: pointer;
+    font-size: .72rem; font-weight: 500; transition: background .2s;
+    white-space: nowrap;
+  }
+  .pix-copy-btn:hover { background: #a07d47; }
+  .pix-copy-btn.copied { background: #22c55e; }
+
+  .pix-timer {
+    font-size: .75rem; color: var(--ink3); margin-top: .8rem;
+  }
+  .pix-timer span { color: var(--gold); font-weight: 500; }
+
+  .pix-instructions {
+    font-size: .8rem; color: var(--ink2); line-height: 1.7;
+    margin-bottom: 1.2rem; font-weight: 300;
+  }
+  .pix-instructions ol { padding-left: 1.2rem; }
+  .pix-instructions li { margin-bottom: .3rem; }
+
+  /* Token step */
+  .token-box {
+    background: var(--bg); border: 2px solid var(--gold);
+    border-radius: var(--radius); padding: 1.5rem; text-align: center;
+    margin-bottom: 1.2rem;
+  }
+  .token-label {
+    font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--ink3); margin-bottom: .5rem;
+  }
+  .token-value {
+    font-family: monospace; font-size: 1.3rem; font-weight: 700;
+    color: var(--gold); letter-spacing: .15em; word-break: break-all;
+  }
+  .token-note {
+    font-size: .75rem; color: var(--ink3); margin-top: .5rem; font-weight: 300;
+  }
+
+  .btn-wpp-token {
+    width: 100%; padding: .9rem;
+    background: #25D366; color: #fff;
+    border: none; border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif; font-size: .85rem; font-weight: 500;
+    letter-spacing: .06em; cursor: pointer; transition: background .2s;
+    display: flex; align-items: center; justify-content: center; gap: .6rem;
+  }
+  .btn-wpp-token:hover { background: #1da851; }
+  .btn-modal-primary {
+    width: 100%; padding: .85rem;
+    background: var(--gold); color: #fff;
+    border: none; border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif; font-size: .82rem; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase; cursor: pointer;
+    transition: all .25s; margin-top: .4rem;
+  }
+  .btn-modal-primary:hover { background: #a07d47; }
+  .btn-modal-secondary {
+    width: 100%; padding: .75rem;
+    background: transparent; color: var(--ink3);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 400;
+    cursor: pointer; margin-top: .6rem; transition: border-color .2s;
+  }
+  .btn-modal-secondary:hover { border-color: var(--ink3); color: var(--ink); }
+
+  .modal-error {
+    font-size: .78rem; color: #dc2626; margin-top: .5rem; display: none;
+  }
+
 </style>
 </head>
 <body>
+
+
+<!-- MODAL CONSULTA -->
+<div class="modal-overlay" id="modalConsulta" onclick="fecharModalFora(event)">
+  <div class="modal-box" id="modalBox">
+
+    <div class="modal-header">
+      <div>
+        <h3>Agendar Consulta</h3>
+        <p>Preencha seus dados e realize o pagamento via PIX</p>
+      </div>
+      <button class="modal-close" onclick="fecharModal()">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- Steps indicator -->
+      <div class="modal-steps">
+        <div class="mstep active" id="step-ind-1">
+          <div class="mstep-num">1</div>Seus Dados
+        </div>
+        <div class="mstep" id="step-ind-2">
+          <div class="mstep-num">2</div>Pagamento
+        </div>
+        <div class="mstep" id="step-ind-3">
+          <div class="mstep-num">3</div>Confirmação
+        </div>
+      </div>
+
+      <!-- PASSO 1 — Formulário -->
+      <div class="step-panel active" id="step1">
+        <div class="modal-price-tag">
+          <span class="modal-price-label">Consulta Jurídica Online</span>
+          <span class="modal-price-value">R$ 247,00</span>
+        </div>
+        <div class="mform-group">
+          <label>Nome Completo *</label>
+          <input type="text" id="lead-nome" placeholder="Seu nome completo"/>
+        </div>
+        <div class="mform-group">
+          <label>WhatsApp *</label>
+          <input type="tel" id="lead-tel" placeholder="(00) 00000-0000"/>
+        </div>
+        <div class="mform-group">
+          <label>Área de Interesse *</label>
+          <select id="lead-area">
+            <option value="">Selecione uma área</option>
+            <option>Aposentadoria</option>
+            <option>Benefícios Previdenciários (BPC, Auxílio Doença...)</option>
+            <option>Família e Sucessões (Divórcio, Inventário...)</option>
+            <option>Pensão Alimentícia</option>
+            <option>Revisão de Benefício INSS</option>
+            <option>Outro assunto</option>
+          </select>
+        </div>
+        <div class="mform-group">
+          <label>Descreva brevemente sua situação *</label>
+          <input type="text" id="lead-msg" placeholder="Ex: Fui negada pelo INSS e quero recorrer"/>
+        </div>
+        <p class="modal-error" id="erro-step1">Por favor, preencha todos os campos.</p>
+        <button class="btn-modal-primary" onclick="irStep2()">Continuar para Pagamento →</button>
+      </div>
+
+      <!-- PASSO 2 — PIX -->
+      <div class="step-panel" id="step2">
+        <p class="pix-instructions">
+          <strong style="color:var(--ink);font-weight:500">Como pagar:</strong>
+          <ol>
+            <li>Abra o app do seu banco</li>
+            <li>Escolha <strong>PIX → Pagar com QR Code</strong> ou <strong>Copia e Cola</strong></li>
+            <li>Confirme o valor de <strong>R$ 247,00</strong> para <strong>Elza Rodrigues</strong></li>
+            <li>Após pagar, clique em <strong>"Já realizei o pagamento"</strong></li>
+          </ol>
+        </p>
+        <div class="pix-box">
+          <canvas id="pix-qr"></canvas>
+          <p class="pix-copy-label">Ou copie o código Pix Copia e Cola</p>
+          <div class="pix-code-wrap">
+            <div class="pix-code" id="pix-code-text">Carregando...</div>
+            <button class="pix-copy-btn" id="btn-copy" onclick="copiarPix()">Copiar</button>
+          </div>
+          <p class="pix-timer">Código válido por <span id="timer-val">10:00</span></p>
+        </div>
+        <button class="btn-modal-primary" onclick="irStep3()">✓ Já realizei o pagamento</button>
+        <button class="btn-modal-secondary" onclick="irStep1()">← Voltar</button>
+      </div>
+
+      <!-- PASSO 3 — Token + WhatsApp -->
+      <div class="step-panel" id="step3">
+        <div style="text-align:center;margin-bottom:1.5rem">
+          <svg width="48" height="48" fill="none" stroke="#22c55e" stroke-width="1.5" viewBox="0 0 24 24" style="margin:0 auto">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <p style="font-size:.9rem;color:var(--ink2);margin-top:.8rem;font-weight:300">
+            Pagamento registrado! Guarde seu código de acesso abaixo.
+          </p>
+        </div>
+        <div class="token-box">
+          <p class="token-label">Seu Token de Acesso</p>
+          <p class="token-value" id="token-display">—</p>
+          <p class="token-note">Envie esse código para a Drª Elza via WhatsApp</p>
+        </div>
+        <button class="btn-wpp-token" onclick="enviarWppToken()">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar Token pelo WhatsApp
+        </button>
+        <button class="btn-modal-secondary" onclick="fecharModal()" style="margin-top:.8rem">Fechar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -685,13 +998,13 @@
       <em>dedicação.</em>
     </h1>
     <p class="hero-subtitle">
-      Sou a Drª Elza Rodrigues, advogada especializada em Direito Previdenciário, Família e Sucessões. Atendo 100% online há mais de 10 anos, com foco em quem mais precisa.
+      Sou a Drª Elza Rodrigues, advogada especializada em Direito Previdenciário, Família e Sucessões. Atendo 100% online, há mais de 10 anos, com foco em quem mais precisa.
     </p>
     <div class="hero-actions">
-      <a href="https://wa.me/5569993049327?text=Ol%C3%A1%2C%20vim%20pelo%20site" class="btn-primary" target="_blank">
-        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Consulta Gratuita
-      </a>
+      <button class="btn-primary" onclick="abrirConsulta()">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        Agendar Consulta
+      </button>
       <a href="#areas" class="btn-secondary">Ver Serviços</a>
     </div>
     <div class="hero-stats">
@@ -1010,5 +1323,210 @@
     observer.observe(el);
   });
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+// ═══════════════════════════════════════════════════════
+//  CONFIGURAÇÕES — edite apenas aqui
+// ═══════════════════════════════════════════════════════
+const PIX_CONFIG = {
+  chave:      'CHAVE_PIX_AQUI',          // ← trocar pela chave PIX da Elza
+  nome:       'ELZA RODRIGUES',          // nome como aparece no banco (máx 25 chars, sem acento)
+  cidade:     'BARRA VELHA',             // cidade (máx 15 chars, sem acento)
+  valor:      '247.00',
+  descricao:  'Consulta Juridica',       // máx 25 chars, sem caracteres especiais
+  whatsapp:   '5569993049327'
+};
+// ═══════════════════════════════════════════════════════
+
+let timerInterval = null;
+let tokenGerado   = '';
+let leadDados     = {};
+
+/* ── Helpers ── */
+function gerarToken() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let t = 'ER-';
+  for (let i = 0; i < 8; i++) t += chars[Math.floor(Math.random() * chars.length)];
+  return t;
+}
+
+function padStr(str, len) {
+  return str.substring(0, len).padEnd(len);
+}
+
+/* ── Gerador de Payload PIX (padrão Banco Central) ── */
+function gerarPixPayload(chave, nome, cidade, valor, descricao, txid) {
+  function field(id, val) {
+    const len = val.length.toString().padStart(2, '0');
+    return id + len + val;
+  }
+  function crc16(str) {
+    let crc = 0xFFFF;
+    for (let i = 0; i < str.length; i++) {
+      crc ^= str.charCodeAt(i) << 8;
+      for (let j = 0; j < 8; j++) {
+        crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
+      }
+    }
+    return ((crc & 0xFFFF).toString(16).toUpperCase()).padStart(4, '0');
+  }
+
+  const merchantAccount =
+    field('00', 'br.gov.bcb.pix') +
+    field('01', chave);
+
+  const nomeClean   = nome.normalize('NFD').replace(/[̀-ͯ]/g,'').substring(0,25);
+  const cidadeClean = cidade.normalize('NFD').replace(/[̀-ͯ]/g,'').substring(0,15);
+  const descClean   = descricao.normalize('NFD').replace(/[̀-ͯ]/g,'').substring(0,25);
+  const txidClean   = txid.replace(/[^A-Za-z0-9]/g,'').substring(0,25) || '***';
+
+  const addInfo = field('05', descClean);
+
+  const payload =
+    field('00', '01') +
+    field('26', merchantAccount) +
+    field('52', '0000') +
+    field('53', '986') +
+    field('54', valor) +
+    field('58', 'BR') +
+    field('59', nomeClean) +
+    field('60', cidadeClean) +
+    field('62', field('05', txidClean)) +
+    '6304';
+
+  return payload + crc16(payload);
+}
+
+/* ── Modal controls ── */
+function abrirConsulta() {
+  document.getElementById('modalConsulta').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  irStep1();
+}
+function fecharModal() {
+  document.getElementById('modalConsulta').classList.remove('active');
+  document.body.style.overflow = '';
+  clearInterval(timerInterval);
+}
+function fecharModalFora(e) {
+  if (e.target.id === 'modalConsulta') fecharModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
+
+/* ── Steps ── */
+function setStep(n) {
+  [1,2,3].forEach(i => {
+    document.getElementById('step' + i).classList.toggle('active', i === n);
+    const ind = document.getElementById('step-ind-' + i);
+    ind.className = 'mstep' + (i === n ? ' active' : i < n ? ' done' : '');
+  });
+}
+
+function irStep1() {
+  clearInterval(timerInterval);
+  setStep(1);
+}
+
+function irStep2() {
+  const nome  = document.getElementById('lead-nome').value.trim();
+  const tel   = document.getElementById('lead-tel').value.trim();
+  const area  = document.getElementById('lead-area').value;
+  const msg   = document.getElementById('lead-msg').value.trim();
+  const erro  = document.getElementById('erro-step1');
+
+  if (!nome || !tel || !area || !msg) {
+    erro.style.display = 'block';
+    return;
+  }
+  erro.style.display = 'none';
+  leadDados = { nome, tel, area, msg };
+
+  tokenGerado = gerarToken();
+  setStep(2);
+  renderizarPix();
+  iniciarTimer(600);
+}
+
+function irStep3() {
+  clearInterval(timerInterval);
+  setStep(3);
+  document.getElementById('token-display').textContent = tokenGerado;
+}
+
+/* ── PIX ── */
+function renderizarPix() {
+  const payload = gerarPixPayload(
+    PIX_CONFIG.chave,
+    PIX_CONFIG.nome,
+    PIX_CONFIG.cidade,
+    PIX_CONFIG.valor,
+    PIX_CONFIG.descricao,
+    tokenGerado
+  );
+
+  document.getElementById('pix-code-text').textContent = payload;
+
+  const canvas = document.getElementById('pix-qr');
+  canvas.innerHTML = '';
+  // Limpa QR anterior
+  while (canvas.firstChild) canvas.removeChild(canvas.firstChild);
+
+  try {
+    new QRCode(canvas, {
+      text: payload,
+      width: 180, height: 180,
+      colorDark: '#1a1714', colorLight: '#faf9f7',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  } catch(e) {
+    canvas.textContent = 'QR Code indisponível — use o código abaixo.';
+  }
+}
+
+function copiarPix() {
+  const code = document.getElementById('pix-code-text').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = document.getElementById('btn-copy');
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 2500);
+  }).catch(() => {
+    const el = document.getElementById('pix-code-text');
+    el.focus();
+    document.execCommand('selectAll');
+  });
+}
+
+function iniciarTimer(segundos) {
+  const el = document.getElementById('timer-val');
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    if (segundos <= 0) {
+      clearInterval(timerInterval);
+      el.textContent = 'Expirado';
+      return;
+    }
+    segundos--;
+    const m = String(Math.floor(segundos / 60)).padStart(2,'0');
+    const s = String(segundos % 60).padStart(2,'0');
+    el.textContent = m + ':' + s;
+  }, 1000);
+}
+
+/* ── WhatsApp com Token ── */
+function enviarWppToken() {
+  const { nome, tel, area, msg } = leadDados;
+  const texto =
+    `Olá, vim pelo site — realizei o pagamento da consulta!%0A%0A` +
+    `*Token:* ${tokenGerado}%0A` +
+    `*Nome:* ${nome}%0A` +
+    `*WhatsApp:* ${tel}%0A` +
+    `*Área:* ${area}%0A` +
+    `*Situação:* ${msg}`;
+  window.open(`https://wa.me/${PIX_CONFIG.whatsapp}?text=${texto}`, '_blank');
+}
+</script>
+
 </body>
 </html>
